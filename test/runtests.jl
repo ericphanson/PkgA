@@ -4,5 +4,5 @@ using Test, Pkg
 @test true
 
 Pkg.activate(mktempdir()) do
-    Pkg.add("JSON")
+    Pkg.add("StatsBase")
 end
