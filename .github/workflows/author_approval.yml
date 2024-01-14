@@ -7,9 +7,6 @@ jobs:
   label:
     permissions:
         pull-requests: write
-        # Workaround:
-        # https://github.com/cli/cli/discussions/5307#discussioncomment-2358577
-        repository-projects: read
     runs-on: ubuntu-latest
     # Run on comments that are:
     # 1) on PRs, not issues,
