@@ -7,6 +7,9 @@ jobs:
   label:
     permissions:
         issues: write
+        # Workaround:
+        # https://github.com/cli/cli/discussions/5307#discussioncomment-2358577
+        repository-projects: read
     runs-on: ubuntu-latest
     # Run on comments that are:
     # 1) on PRs, not issues,
@@ -23,7 +26,7 @@ jobs:
           # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
           PR_BODY: ${{ github.event.issue.body }}
           COMMENTER: ${{ github.event.comment.user.login }}
-        shell: julia --color=yes {0}
+        shell: julia --compile=min --optimize=0 --color=yes {0}
         run: |
           m = match(r"Created by: @([^\s]+)", ENV["PR_BODY"])
           verified = !isnothing(m) && m[1] == ENV["COMMENTER"]
