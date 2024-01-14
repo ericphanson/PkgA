@@ -27,6 +27,9 @@ jobs:
         run: |
           m = match(r"Created by: @([^\s]+)", ENV["PR_BODY"])
           verified = !isnothing(m) && m[1] == ENV["COMMENTER"]
+          println("Matched user: ", m === nothing ? nothing : m[1])
+          println("Commenter: ", ENV["COMMENTER"])
+          println("Verified: ", verified)
           open(ENV["GITHUB_OUTPUT"], "a") do io
             println(io, "verified=$verified")
           end
